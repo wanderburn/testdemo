@@ -10,8 +10,6 @@
 
 from uiautomator import device as device
 import os
-import sys
-import time
 import logging
 
 def createlogger():
@@ -69,9 +67,7 @@ class count_pictures(object):
         c=int(c)
         print 'The total %s pictures has been exsited'%c
         self._logger.debug("please input the deleted numbers of pictures ")
-
         h=raw_input(u'请输入要删除的图片的数量h:')
-
         h=int(h)
         device(description='More options').click()
         device(text='Deselect all').click()
@@ -79,7 +75,6 @@ class count_pictures(object):
         g=c//12
         for y in range(g+1):
             device.swipe(240,180,240,820,steps=100)
-            ++y
         device(description='More options').click()
         device.delay(1)
         device(text='Select item').click()
@@ -89,12 +84,9 @@ class count_pictures(object):
         else:
             self._logger.debug("can start to delete pictures")
             if h>15:
-                a,b=0,0
                 for b in range(5):
                     for a in range(3):
                         device.click(80+160*a,200+160*b)
-                        ++a
-                    ++b
                 f=h-15
                 j=f//3
                 i=f%3
@@ -110,14 +102,11 @@ class count_pictures(object):
                         if x<j:
                             for t in range(3):
                                 device.click(80+160*t,774)
-                                ++t
                         f=f-3
                     else:
                         pass
-                    ++x
                 for m in range(i):
                     device.click(80+160*m,774)
-                    ++m
                 device(description='Delete').click()
                 device(text='OK').click()
                 if device(description='More options').exists:
@@ -142,15 +131,11 @@ class count_pictures(object):
             elif h<=15:
                 i=h%3
                 j=h//3
-                a,b,t=0,0,0
                 for b in range(j):
                     for a in range(3):
                         device.click(80+160*a,200+160*b)
-                        a=a+1
-                    b=b+1
                 for t in range(i):
                     device.click(80+160*t,200+160*j)
-                    ++t
                 device(description='Delete').click()
                 device(text='OK').click()
                 if device(description='More options').exists:
